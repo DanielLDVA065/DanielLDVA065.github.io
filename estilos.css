@@ -1,6 +1,14 @@
 body{
     background-color: #74066c;
     color: blue;
-
 }
 
+div{
+    border: 10px solid white;
+}
+
+#contenedor{
+    
+    border: 10px yellow solid;
+
+}
