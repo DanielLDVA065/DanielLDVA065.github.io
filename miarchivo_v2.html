@@ -18,12 +18,83 @@
   </style>
    
    
+<div id="encabezado">
+    <p>Adios</p>
+</div>
 
-  
+<button type="button"
+id="uno">Romeo and Juliet</button>
+<button type="button"
+id="dos">Slipknot(Biografia)</button>
+<button type="button"
+id="tres">Slipknot(Imagen)</button>
+<button type="button"
+id="cuatro">Coldplay(Biografia)</button>
+<button type="button"
+id="cinco">Coldplay(Imagen)</button>
 
   
 <script >
-      
+let t=1986;
+const c=3.28;
+console.log(3);
+let p={"titulo":"Llanon en llamas","autor":"Juan Rulfo"};
+console.log(p.autor);
+let d=document.createElement("p");
+d.textContent="Hola";
+document.getElementById('encabezado').appendChild(d);   
+d.setAttribute("style","color: red;");
+
+async function obtenerJSON() {
+  const respuesta = await fetch('http://openlibrary.org/subjects/love.json?published_in=1500-1600');
+  const datos = await respuesta.json();
+  console.log(datos);
+  let d=document.createElement("p");
+  d.textContent=datos.works[0].title;
+  document.getElementById('contenedor').appendChild(d);
+}
+
+async function obtenerBio() {
+  const respuesta = await fetch('https://www.theaudiodb.com/api/v1/json/123/search.php?s=slipknot');
+  const datos = await respuesta.json();
+  console.log(datos);
+  let d = document.createElement("p");
+  d.textContent=datos.artists[0].strBiography;
+  document.getElementById('contenedor').appendChild(d);
+}
+
+async function obtenerImagen() {
+  const respuesta = await fetch('https://www.theaudiodb.com/api/v1/json/123/search.php?s=slipknot');
+  const datos = await respuesta.json();
+  console.log(datos);
+  let d = document.createElement("img");
+  d.src=datos.artists[0].strArtistFanart;
+  document.getElementById('contenedor').appendChild(d);
+}
+
+async function obtenerBio2() {
+  const respuesta = await fetch('https://www.theaudiodb.com/api/v1/json/123/search.php?s=coldplay');
+  const datos = await respuesta.json();
+  console.log(datos);
+  let d = document.createElement("p");
+  d.textContent=datos.artists[0].strBiography;
+  document.getElementById('contenedor').appendChild(d);
+}
+
+async function obtenerImagen2() {
+  const respuesta = await fetch('https://www.theaudiodb.com/api/v1/json/123/search.php?s=coldplay');
+  const datos = await respuesta.json();
+  console.log(datos);
+  let d = document.createElement("img");
+  d.src=datos.artists[0].strArtistFanart;
+  document.getElementById('contenedor').appendChild(d);
+}
+
+document.getElementById("uno").addEventListener("click",obtenerJSON);
+document.getElementById("dos").addEventListener("click",obtenerBio);
+document.getElementById("tres").addEventListener("click",obtenerImagen);
+document.getElementById("cuatro").addEventListener("click",obtenerBio2);
+document.getElementById("cinco").addEventListener("click",obtenerImagen2);
 </script>
 
 
