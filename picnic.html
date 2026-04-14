@@ -42,6 +42,8 @@
     let un_boton;
 
     document.addEventListener("DOMContentLoaded", function() {
+      un_boton= document.getElementById("un_boton");
+        un_boton.addEventListener("click", irPorAlgo);
          // un_boton = document.getElementById();
          // document.getElementById().addEventListener("click", );
           //console.log("DOM listo");
@@ -62,8 +64,44 @@
         //imagenArtista.setAttribute('src', '');
      }
 
-
+     async function irPorAlgo() {
+  try {
+        const respuesta = await fetch("https://api.thedogapi.com/v1/votes",      {
+        method: "GET", 
+        headers: {
+             "x-api-key": "live_aRciTyCcGMfcTTffkqKPdLjpSTG2muLxKp6kORYhYGIWgHh3GVeG1v4jA9SkUXV0"
+        }
+});
+    if (!respuesta.ok) {
+      console.log("Error");
+      //throw new Error("Error");
+    }
+    const data = await respuesta.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+     }
 
     </script>
 </body>
+
+<div class="tabs three">
+  <input id='tab-1' type='radio' name='tabgroupB' checked />
+  <label class="pseudo button toggle" for="tab-1">Forest</label>
+  <input id='tab-2' type='radio' name='tabgroupB'>
+  <label class="pseudo button toggle" for="tab-2">Lake</label>
+  <input id='tab-3' type='radio' name='tabgroupB'>
+  <div class="row">
+    <div>
+      <p>Hola</p>
+    </div>
+
+    <div>
+      <p>Adiós</p>
+    </div>
+
+  </div>
+</div>
+
 </html>
