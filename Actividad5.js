@@ -1,12 +1,27 @@
 //Escribe un comentario explicando para qué sirve http
+//Sistema que permite que navegadores web puedan mandar y recibir elementos de HTML, videos, imagenes, etc. de servidores.
 import http from 'http';
 //Escribe un comentario explicando para qué sirve fs
+//Files System sirve para interactuar con archivos del servidor en JavaScript.
 import fs from 'fs';
 
 
     //Esta función deberá mostrar deberá mostrar una página HTML 
     //con la bienvenida a tu proyecto
     function darBienvenida(req, res) {
+      const htmlContent = `
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Bienvenida</title>
+  </head>
+  <body>
+    <h1>¡Hola!</h1>
+    <p>Servidor funcionando.</p>
+  </body>
+  </html>`;
+
        //Agrega lo mínimo necesario en bienvenida.html
        
       
