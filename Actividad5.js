@@ -4,35 +4,26 @@ import http from 'http';
 //Escribe un comentario explicando para qué sirve fs
 //Files System sirve para interactuar con archivos del servidor en JavaScript.
 import fs from 'fs';
+import path from 'path';
 
 
     //Esta función deberá mostrar deberá mostrar una página HTML 
     //con la bienvenida a tu proyecto
     function darBienvenida(req, res) {
-      const htmlContent = `
-  <!DOCTYPE html>
-  <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <title>Bienvenida</title>
-  </head>
-  <body>
-    <h1>¡Hola!</h1>
-    <p>Servidor funcionando.</p>
-  </body>
-  </html>`;
-
+      //const filePath = path.join(__dirname, 'bienvenida.html');
+      //res.sendFile(filePath);
        //Agrega lo mínimo necesario en bienvenida.html
        
-      
       fs.readFile('bienvenida.html', 'utf8', (error, data) => {
         if (error) {
            //Escribe qué significa el 500 
+           // 500 es el codigo para indicar un error interrno el servidor.
           res.writeHead(500, { 'Content-Type': 'text/plain' });
           res.end('Oh no!!!!');
           return;
         }
         //Escribe qué significa el 200
+        //200 es el codigo que dice que toda la peticion salio correctamente.
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(data);
     });
@@ -43,14 +34,20 @@ import fs from 'fs';
     function getUsuarios(req, res) {
         //Esto representa un objeto JSON de un usuario
         //Agrega otro usuario
-        const usuarios = {
+        const usuarios = [{
             "nombre": "Punk",
             "saldo": "0",
-          };  
+          },
+          {
+            "nombre": "Isaac",
+            "saldo": "100000000",
+          }];
+
       res.writeHead(200, { 'Content-Type': 'application/json' });
       
       //Escribe qué hace la función stringify y por qué la tenemos que usar
-      res.end(JSON.stringify(mascotas));
+      //Stringify convierte un objeto de JavaScript en un string en JSON.
+      res.end(JSON.stringify(usuarios));
     }
 
   
@@ -81,7 +78,7 @@ import fs from 'fs';
       }
 
     //Esta función deberá enviar un json con los datos de las movimientos
-    function getMoviminientos(req, res) {
+    function getMovimientos(req, res) {
     //Tienes que corregir varias cosas en esta sección
       res.writeHead(200, { 'Content-Type': 'text/plain' });
       res.end('Aquí van los datos de los movimientos financieros');
