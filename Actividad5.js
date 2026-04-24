@@ -1,6 +1,6 @@
 //Escribe un comentario explicando para qué sirve http
 //Sistema que permite que navegadores web puedan mandar y recibir elementos de HTML, videos, imagenes, etc. de servidores.
-import http from 'http';
+import http, { get } from 'http';
 //Escribe un comentario explicando para qué sirve fs
 //Files System sirve para interactuar con archivos del servidor en JavaScript.
 import fs from 'fs';
@@ -80,17 +80,36 @@ import path from 'path';
     //Esta función deberá enviar un json con los datos de las movimientos
     function getMovimientos(req, res) {
     //Tienes que corregir varias cosas en esta sección
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end('Aquí van los datos de los movimientos financieros');
+    const movimientos = [
+        { id:1, accion: "Compra", monto: 100, fecha: "24/4/2024" },
+        { id:2, accion: "Venta", monto: 50, fecha: "25/4/2024" }
+    ];
+    const jsonString = JSON.stringify(movimientos);
+    console.log(jsonString);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(jsonString);
     }
 
     function manejarRuta404(req, res) {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
       //Cambia el mensaje por algo más divertido
-      res.end('Página no encontrada.');
+      res.end('La princesa no esta en este castillo.');
     }
 
+    function mostrarEquipo(req, res) {
+        fs.readFile('equipo.html', 'utf8', (error, data) => {
+            if (error) { 
+              res.writeHead(500, { 'Content-Type': 'text/plain' });
+              res.end('Oh no!!!!');
+              return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        });
+      }
+
     //incluye el enlace a la documentación de createServer
+    //https://nodejs.org/api/http.html#httpcreateserveroptions-requestlistener
     const servidor = http.createServer((req, res) => {
       const url = req.url;
 
@@ -108,18 +127,19 @@ import path from 'path';
         mostrarMovimientos(req, res);
       } 
       //Agrega una ruta /equipo y su función correspondiente para que muestre el equipo del proyecto
+      else if (url === '/equipo') {
+        mostrarEquipo(req, res);
+      }
       //Haz una página equipo.html correspondiente
       //Escribe el nombre completo y una cualidad que valores en esa persona de tu equipo
       //Trata de agregar una imagen a equipo.html
       //Explica si la puedes ver, en caso negativo ¿qué crees que pase?
-
+    
       //Agrega una ruta /opinion
       //Haz una página opinion.html
       // Lee el siguiente artículo y responde ¿Crees que el colonialismo digital es un riesgo para tu carrera profesionl? ¿Para tu vida persona?
       //¿Qué es el freedombox?
       //https://www.aljazeera.com/opinions/2019/3/13/digital-colonialism-is-threatening-the-global-south
-      
-      
       else {
         manejarRuta404(req, res);
       }
