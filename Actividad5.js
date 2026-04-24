@@ -134,11 +134,14 @@ import path from 'path';
       //Escribe el nombre completo y una cualidad que valores en esa persona de tu equipo
       //Trata de agregar una imagen a equipo.html
       //Explica si la puedes ver, en caso negativo ¿qué crees que pase?
+      //No la veo, yo creo que es porque no puede mostrar la imagen adecuadamente desde el html y se debe hacer un proceso distinto.
     
       //Agrega una ruta /opinion
       //Haz una página opinion.html
-      // Lee el siguiente artículo y responde ¿Crees que el colonialismo digital es un riesgo para tu carrera profesionl? ¿Para tu vida persona?
+      // Lee el siguiente artículo y responde ¿Crees que el colonialismo digital es un riesgo para tu carrera profesional? ¿Para tu vida persona?
+      //El colonialismo digital es un peligro para mi carrera profesional porque disminuye las chances de ser exitoso como un programador independiente. Para mi vida personal, tambien es un peligro, ya que mi privacidad se ve vulnerada. 
       //¿Qué es el freedombox?
+      //Software gratis que convierte computadoras en servers personales sin ningun control externo.
       //https://www.aljazeera.com/opinions/2019/3/13/digital-colonialism-is-threatening-the-global-south
       else {
         manejarRuta404(req, res);
