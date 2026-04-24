@@ -119,6 +119,17 @@ import path from 'path';
             res.end(data);
         });
       }
+      function mostrarTarjeta(req, res) {
+        fs.readFile('tarjeta.html', 'utf8', (error, data) => {
+            if (error) {
+              res.writeHead(500, { 'Content-Type': 'text/plain' });
+              res.end('Oh no!!!!');
+              return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        });
+      }
     //incluye el enlace a la documentación de createServer
     //https://nodejs.org/api/http.html#httpcreateserveroptions-requestlistener
     const servidor = http.createServer((req, res) => {
@@ -143,6 +154,9 @@ import path from 'path';
       }
       //Tarea 6 endpoints
       else if (url === '/Estatus') {
+        mostrarEstatus(req, res);
+      }
+       else if (url === '/Tarjeta') {
         mostrarEstatus(req, res);
       }
       //Haz una página equipo.html correspondiente
