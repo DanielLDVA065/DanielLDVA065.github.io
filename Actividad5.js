@@ -130,6 +130,50 @@ import path from 'path';
             res.end(data);
         });
       }
+      function mostrarPlanes(req, res) {
+        fs.readFile('planes.html', 'utf8', (error, data) => {
+            if (error) {
+              res.writeHead(500, { 'Content-Type': 'text/plain' });
+              res.end('Oh no!!!!');
+              return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        });
+      }
+      function mostrarOpinion(req, res) {
+        fs.readFile('opinion.html', 'utf8', (error, data) => {
+            if (error) {
+              res.writeHead(500, { 'Content-Type': 'text/plain' });
+              res.end('Oh no!!!!');
+              return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        });
+      }
+      function mostrarPreguntasFrecuentes(req, res) {
+        fs.readFile('preguntasFrecuentes.html', 'utf8', (error, data) => {
+            if (error) {
+              res.writeHead(500, { 'Content-Type': 'text/plain' });
+              res.end('Oh no!!!!');
+              return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        });
+      }
+      function mostrarContacto(req, res) {
+        fs.readFile('contacto.html', 'utf8', (error, data) => {
+            if (error) {
+              res.writeHead(500, { 'Content-Type': 'text/plain' });
+              res.end('Oh no!!!!');
+              return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        });
+      }
     //incluye el enlace a la documentación de createServer
     //https://nodejs.org/api/http.html#httpcreateserveroptions-requestlistener
     const servidor = http.createServer((req, res) => {
@@ -158,6 +202,18 @@ import path from 'path';
       }
        else if (url === '/Tarjeta') {
         mostrarTarjeta(req, res);
+      }
+        else if (url === '/Planes') {
+        mostrarPlanes(req, res);
+      }
+        else if (url === '/Opinion') {
+        mostrarOpinion(req, res);
+      }
+        else if (url === '/PreguntasFrecuentes') {
+          mostrarPreguntasFrecuentes(req, res);
+      }
+        else if (url === '/Contacto') {
+          mostrarContacto(req, res);
       }
       //Haz una página equipo.html correspondiente
       //Escribe el nombre completo y una cualidad que valores en esa persona de tu equipo
