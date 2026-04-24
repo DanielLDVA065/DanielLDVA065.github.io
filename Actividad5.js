@@ -108,6 +108,17 @@ import path from 'path';
         });
       }
 
+      function mostrarPerfil(req, res) {
+        fs.readFile('perfil.html', 'utf8', (error, data) => {
+            if (error) {
+              res.writeHead(500, { 'Content-Type': 'text/plain' });
+              res.end('Oh no!!!!');
+              return;
+            }
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        });
+      }
     //incluye el enlace a la documentación de createServer
     //https://nodejs.org/api/http.html#httpcreateserveroptions-requestlistener
     const servidor = http.createServer((req, res) => {
@@ -129,6 +140,10 @@ import path from 'path';
       //Agrega una ruta /equipo y su función correspondiente para que muestre el equipo del proyecto
       else if (url === '/equipo') {
         mostrarEquipo(req, res);
+      }
+      //Tarea 6 endpoints
+      else if (url === '/perfil') {
+        mostrarPerfil(req, res);
       }
       //Haz una página equipo.html correspondiente
       //Escribe el nombre completo y una cualidad que valores en esa persona de tu equipo
