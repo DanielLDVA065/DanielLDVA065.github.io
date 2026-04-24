@@ -108,8 +108,8 @@ import path from 'path';
         });
       }
 
-      function mostrarPerfil(req, res) {
-        fs.readFile('perfil.html', 'utf8', (error, data) => {
+      function mostrarEstatus(req, res) {
+        fs.readFile('estatus.html', 'utf8', (error, data) => {
             if (error) {
               res.writeHead(500, { 'Content-Type': 'text/plain' });
               res.end('Oh no!!!!');
@@ -142,8 +142,8 @@ import path from 'path';
         mostrarEquipo(req, res);
       }
       //Tarea 6 endpoints
-      else if (url === '/perfil') {
-        mostrarPerfil(req, res);
+      else if (url === '/Estatus') {
+        mostrarEstatus(req, res);
       }
       //Haz una página equipo.html correspondiente
       //Escribe el nombre completo y una cualidad que valores en esa persona de tu equipo
