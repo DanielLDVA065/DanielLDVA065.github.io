@@ -157,7 +157,7 @@ import path from 'path';
         mostrarEstatus(req, res);
       }
        else if (url === '/Tarjeta') {
-        mostrarEstatus(req, res);
+        mostrarTarjeta(req, res);
       }
       //Haz una página equipo.html correspondiente
       //Escribe el nombre completo y una cualidad que valores en esa persona de tu equipo
