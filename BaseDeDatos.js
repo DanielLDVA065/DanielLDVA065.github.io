@@ -19,6 +19,18 @@ async function main() {
     connection = await mysql.createConnection(config);
     console.log('Conectado a la BD de Kueski Pay');
 
+    // Crear tabla de donantes
+    await connection.execute(`
+      CREATE TABLE IF NOT EXISTS donantes (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        nombre VARCHAR(100),
+        email VARCHAR(100),
+        monto DECIMAL(10,2),
+        fecha DATE
+      )
+    `);
+    console.log('Tabla "donantes" lista');
+
     // Crear tablas (si no existen)
     // Tabla de comercios afiliados (páginas donde aceptan Kueski Pay)
     await connection.execute(`

@@ -1,70 +1,45 @@
-import express from 'express';
-import mysql from 'mysql2';
-//Pendiente nombre de la librería
-import Node from 'node-';
+const express = require('express');
+const mysql = require('mysql2');
+const NodeCache = require('node-cache');
+const path = require('path');
 
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-
-//stdTTL
-const myCache = new NodeCache({ stdTTL:  });
-
-const __filename = fileURLToPath(import.meta.url); 
-const __dirname = path.dirname(__filename); 
+const myCache = new NodeCache({ stdTTL: 2026 }); // duración de 2026 segundos
 
 const app = express();
 
-
-//Completa los datos correctos
 const connection = mysql.createConnection({
-  host: ".aivencloud.com",
-  port: 20902,
-  user: "",
-  password: "",
-  database: "defaultdb"
+  host: 'mysql-2a58e4cb-tec67.h.aivencloud.com',
+  port: 12053,
+  user: 'avnadmin',
+  password: 'AVNS_ti2q5w8Kl0NOFrrT0xi',
+  database: 'defaultdb'
 });
-
 
 let datosDB;
 
 function getDonantes() {
-
-  //Pon un nombre a la llave
-  const cacheKey = "";
-
-  //Si es necesario cambia la consulta
+  const cacheKey = "misDonantes";
   const consultaSQL = `SELECT * FROM donantes;`;
 
-  //Completa el dato faltante
-  const cachedDonantes = myCache.get();
-
+  const cachedDonantes = myCache.get(cacheKey);
   if (cachedDonantes) {
     console.log("Servido desde el caché");
-
-    //falta el dato a regresar
-    return ;
+    return cachedDonantes;
   }
 
   console.log("Consultando base de datos");
 
-
-  //Esto lo vimos ayer
   connection.connect(error => {
     if (error) throw error;
     console.log("Conectada");
   });
 
-
   connection.query(consultaSQL, (error, resultados) => {
     if (error) throw error;
-
     console.log(resultados);
-    //Faltan datos
-    myCache.set(, );
+    myCache.set(cacheKey, resultados);
     datosDB = resultados;
-    //connection.end();
-
+    // connection.end();
   });
 
   console.log(datosDB);
@@ -72,16 +47,11 @@ function getDonantes() {
 }
 
 app.get('/storage', (req, res) => {
-
-  //Falta un dato
-  res.sendFile(path.join(__dirname, ''));
+  res.sendFile(path.join(__dirname, 'localStorage_por.html'));
 });
 
 app.get('/obtenerDatos', (req, res) => {
-
-  //Falta llamar una función
-  const datos = 
-
+  const datos = getDonantes();
   res.json(datos);
 });
 

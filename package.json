@@ -20,6 +20,11 @@
   "homepage": "https://github.com/DanielLDVA065/DanielLDVA065.github.io#readme",
   "dependencies": {
     "express": "^5.2.1",
-    "mysql2": "^3.22.3"
+    "mysql": "^2.18.1",
+    "mysql2": "^3.22.3",
+    "node": "^22.22.3",
+    "node-cache": "^5.1.2",
+    "path": "^0.12.7",
+    "url": "^0.11.4"
   }
 }
