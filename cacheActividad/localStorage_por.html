@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>LocalStorage</title>
+    
+</head>
+<body>
+
+    <!-- Completa los ids -->
+    <button id="">Cargar Datos desde el servidor o desde localStorage</button>
+    
+    <h3>Datos:</h3>
+    <p id="">Un día los datos vendrán o no</p>
+
+    <script>
+
+        //Completa los datos
+        const btn = document.getElementById('');
+        const mensaje = document.getElementById('');
+
+        btn.addEventListener('click', async () => {
+            
+            if (navigator.onLine) {
+            
+                try {
+                    mensaje.innerText = "Consultando servidor...";
+
+                    //Falta un dato
+                    const respuesta = await fetch('');
+
+                    //Falta una palabra
+                    const datos = respuesta.json();
+
+                    //El nombre del objeto está incorrecto
+                    loc.setItem('mis_donantes', JSON.stringify(datos));
+                    
+                    mensaje.innerText = JSON.stringify(datos);
+                
+                } catch (e) {
+                    mensaje.innerText = "Error al conectar con servidor aunque no es culpa de tu proveedor.";
+                }
+            } else {
+                
+
+                //Falta un dato
+                const datosLocales = localStorage.getItem('');
+                
+
+                //Falta información
+                if () {
+                    const datos = JSON.parse(datosLocales);
+                    mensaje.innerText = "Datos recuperados de LocalStorage (Sin internet):\n" + JSON.stringify(datos);
+                } else {
+                    mensaje.innerText = "No tienes internet y no hay datos guardados previamente. Así que eres libre.";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
